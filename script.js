@@ -82,10 +82,22 @@ var specialCharList = [
   ".",
 ];
 
-var list1 = [];
-var list2 = [];
-var list3 = [];
-var list4 = [];
+var list = [];
+
+// Assignment Code
+
+var generateBtn = document.querySelector("#generate");
+
+// Write password to the #password input
+function writePassword() {
+  var newPassword = generatePassword();
+
+  var passwordText = document.querySelector("#password");
+
+  passwordText.value = newPassword;
+}
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
 
 function generatePassword() {
   var userLength = Number(
@@ -124,45 +136,25 @@ function generatePassword() {
   }
 
   if (lowerCase) {
-    var list1 = lowerCaseList;
+    list = list.concat(lowerCaseList);
   }
   if (upperCase) {
-    var list2 = upperCaseList;
+    list = list.concat(upperCaseList);
   }
   if (numeric) {
-    var list3 = digits;
+    list = list.concat(numeric);
   }
   if (specialChar) {
-    var list4 = specialCharList;
+    list = list.concat(specialCharList);
   }
-
-  var finalList = list1.concat(list2, list3, list4);
 
   var password = "";
 
   for (var i = 0; i < userLength; i++) {
-    var randomNumber = Math.floor(Math.random() * finalList.length);
+    var randomNumber = Math.floor(Math.random() * list.length);
 
-    password += finalList[randomNumber];
+    password += list[randomNumber];
   }
 
-  console.log(password);
+  return password;
 }
-
-generatePassword();
-
-// Assignment Code
-
-var generateBtn = document.querySelector("#generate");
-
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-}
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
