@@ -142,7 +142,7 @@ function generatePassword() {
     list = list.concat(upperCaseList);
   }
   if (numeric) {
-    list = list.concat(numeric);
+    list = list.concat(digits);
   }
   if (specialChar) {
     list = list.concat(specialCharList);
